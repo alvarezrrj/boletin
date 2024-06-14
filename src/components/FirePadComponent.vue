@@ -29,6 +29,7 @@ function initialize() {
 
   monacoEditor.onDidChangeModelContent(() => props.onChange(monacoEditor.getValue()))
 
+  // @ts-ignore
   firepad = fromMonaco(fireApp.database().ref('/boletin'), monacoEditor, {
     // TODO
     // Set name and color dynamically

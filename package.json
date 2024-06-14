@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://alvarezrrj.github.io/boletin.constructor/",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -13,8 +12,8 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "predeploy": "npx auto-version && git add ./package.json && git commit -m 'minor version bump' && git push origin main && npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@hackerrank/firepad": "file:../npm/firepad-x",
@@ -37,8 +36,10 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.5",
     "@vue/tsconfig": "^0.5.1",
+    "auto-version": "^1.0.11",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
+    "gh-pages": "^6.1.1",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
