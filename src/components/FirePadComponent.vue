@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { fromMonaco, fromMonacoWithFirebase, type IFirepad } from '@hackerrank/firepad'
+import { fromMonaco, type IFirepad } from '@hackerrank/firepad'
 import firebase from 'firebase'
 import * as monaco from 'monaco-editor'
 
