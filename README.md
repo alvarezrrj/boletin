@@ -1,13 +1,5 @@
 # Boletin
 
-## Credenciales
-
-- WP user boletin-builder
-  email: rodrigo.alvarez@dhamma.org
-  user: boletin-builder
-  pass: 79@)zWc6^4McRbwa3@7^MdDE
-  app pass: nsl1 VkSg 0HS2 gSIe hIhb HQNf
-
 ## Upload img to WP
 
 Usar en el boletín la versión que tenga mas de 600px de ancho
@@ -16,12 +8,11 @@ Usar en el boletín la versión que tenga mas de 600px de ancho
 
 ```bash
 curl \
---user 'boletin-builder:nsl1 VkSg 0HS2 gSIe hIhb HQNf' \
+--user "boletin-builder:$WP_PASS" \
 https://wordpress-1007166-3876412.cloudwaysapps.com/wp-json/wp/v2/media?alt_text=alice \
---data-binary @/home/e/Pictures/Midjurney/alice_in_mordor.png \
+--data-binary @/path/to/file.png \
 -H 'Content-Disposition: attachment; filename=alice_in_mordor.png' \
 -H 'Content-Type: image/png'
-
 ```
 
 ### Response
