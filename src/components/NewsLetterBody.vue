@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, onUpdated, onMounted } from 'vue'
+import { ref, onUpdated, onMounted } from 'vue'
 
 const props = defineProps({
   html: { type: String, required: true }

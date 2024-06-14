@@ -298,9 +298,10 @@ import NewsLetterBody from './NewsLetterBody.vue'
 import NewsLetterFooter from './NewsLetterFooter.vue'
 import NewsLetterTOC from './NewsLetterTOC.vue'
 import NewsLetterCentreCards from './NewsLetterCentreCards.vue'
-import { FireBase } from './FireBase.ts'
+import FirePad from './FirePadComponent.vue'
+// import { FireBase } from './FireBase'
 
-const fireBase = new FireBase()
+// const fireBase = new FireBase()
 
 const md = markdownit({
   linkify: true,
@@ -314,20 +315,20 @@ const month = new Intl.DateTimeFormat('es-AR', { month: 'long' }).format(now)
 const year = now.getFullYear()
 const headerDate = ref(`${month} ${year}`)
 
-async function parse() {
-  html.value = md.render(rawBody.value)
-  await fireBase.write(rawBody.value)
+async function parse(raw: string) {
+  html.value = md.render(raw)
+  // await fireBase.write(rawBody.value)
 }
 
 async function fireBaseInit(dataRef: Ref<string>) {
   // TODO
   // Login modal
-  await fireBase.signIn('oldstudent@dhamma.org', 'behappy')
-  await fireBase.listen(dataRef)
+  // await fireBase.signIn('oldstudent@dhamma.org', 'behappy')
+  // await fireBase.listen(dataRef)
 }
 
 fireBaseInit(rawBody)
-onUpdated(parse)
+// onUpdated(parse)
 </script>
 
 <template>
@@ -335,7 +336,8 @@ onUpdated(parse)
     <div class="input">
       <input type="text" v-model="headerImgUrl" placeholder="Imagen de encabezado" />
       <input type="text" v-model="headerDate" placeholder="Fecha" />
-      <textarea v-model="rawBody" @keyup="parse"></textarea>
+      <!-- <textarea v-model="rawBody" @keyup="parse"></textarea> -->
+      <FirePad :onChange="parse" />
     </div>
     <div class="newsletter_wrapper">
       <table id="u_body">
