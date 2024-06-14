@@ -292,23 +292,19 @@ Facebook
 // @ts-ignore
 import markdownit from 'markdown-it'
 import markdownitAttrs from 'markdown-it-attrs'
-import { onUpdated, ref, type Ref } from 'vue'
+import { ref } from 'vue'
 import NewsLetterHeader from './NewsLetterHeader.vue'
 import NewsLetterBody from './NewsLetterBody.vue'
 import NewsLetterFooter from './NewsLetterFooter.vue'
 import NewsLetterTOC from './NewsLetterTOC.vue'
 import NewsLetterCentreCards from './NewsLetterCentreCards.vue'
 import FirePad from './FirePadComponent.vue'
-// import { FireBase } from './FireBase'
-
-// const fireBase = new FireBase()
 
 const md = markdownit({
   linkify: true,
   breaks: true
 }).use(markdownitAttrs)
 const html = ref('')
-const rawBody = ref('')
 const headerImgUrl = ref('https://sukhada.dhamma.org/fotos/2024/03/cabezal.jpg')
 const now = new Date()
 const month = new Intl.DateTimeFormat('es-AR', { month: 'long' }).format(now)
@@ -316,19 +312,14 @@ const year = now.getFullYear()
 const headerDate = ref(`${month} ${year}`)
 
 async function parse(raw: string) {
-  html.value = md.render(raw)
-  // await fireBase.write(rawBody.value)
+  try {
+    html.value = md.render(raw)
+  } catch (e) {
+    console.error('Error rendering markdown', e)
+    // TODO
+    // alert
+  }
 }
-
-async function fireBaseInit(dataRef: Ref<string>) {
-  // TODO
-  // Login modal
-  // await fireBase.signIn('oldstudent@dhamma.org', 'behappy')
-  // await fireBase.listen(dataRef)
-}
-
-fireBaseInit(rawBody)
-// onUpdated(parse)
 </script>
 
 <template>
@@ -336,7 +327,6 @@ fireBaseInit(rawBody)
     <div class="input">
       <input type="text" v-model="headerImgUrl" placeholder="Imagen de encabezado" />
       <input type="text" v-model="headerDate" placeholder="Fecha" />
-      <!-- <textarea v-model="rawBody" @keyup="parse"></textarea> -->
       <FirePad :onChange="parse" />
     </div>
     <div class="newsletter_wrapper">

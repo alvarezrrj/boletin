@@ -2,7 +2,7 @@
 
 ## Upload img to WP
 
-Usar en el boletín la versión que tenga mas de 600px de ancho
+Usar en el boletín la versión que tenga ms de 600px de ancho
 
 ### Request
 
