@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { fromMonaco, type IFirepad } from '@hackerrank/firepad'
 import firebase from 'firebase'
+// import { }
 import * as monaco from 'monaco-editor'
 
 const props = defineProps<{
@@ -29,7 +30,6 @@ function initialize() {
 
   monacoEditor.onDidChangeModelContent(() => props.onChange(monacoEditor.getValue()))
 
-  // @ts-ignore
   firepad = fromMonaco(fireApp.database().ref('/boletin'), monacoEditor, {
     // TODO
     // Set name and color dynamically
