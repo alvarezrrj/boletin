@@ -2,7 +2,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { fromMonaco, type IFirepad } from '@hackerrank/firepad'
 import firebase from 'firebase'
-// import { }
 import * as monaco from 'monaco-editor'
 
 const props = defineProps<{
@@ -40,24 +39,27 @@ function initialize() {
 }
 
 onMounted(async () => {
+  dialogRef.value?.showModal()
   const formElement = formRef.value
-  if (formElement)
-    formElement.onsubmit = async (e) => {
-      e.preventDefault()
-      try {
-        auth = await fireApp
-          .auth()
-          .signInWithEmailAndPassword(formElement.email.value, formElement.password.value)
 
-        initialize()
+  if (!formElement) return
 
-        formElement.reset()
-        dialogRef.value?.close()
-      } catch (e) {
-        console.log('Invalid credentials')
-        console.log('AUTH', auth)
-      }
+  formElement.onsubmit = async (e) => {
+    e.preventDefault()
+    try {
+      auth = await fireApp
+        .auth()
+        .signInWithEmailAndPassword(formElement.email.value, formElement.password.value)
+
+      initialize()
+
+      formElement.reset()
+      dialogRef.value?.close()
+    } catch (e) {
+      console.log('Invalid credentials')
+      console.log('AUTH', auth)
     }
+  }
 })
 onUnmounted(() => {
   firepad.dispose()
@@ -65,7 +67,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <dialog open ref="dialogRef">
+  <dialog ref="dialogRef">
     <form ref="formRef">
       <input type="text" name="email" />
       <input type="password" name="password" />
@@ -74,3 +76,9 @@ onUnmounted(() => {
   </dialog>
   <div id="monaco" ref="monacoWrapperRef"></div>
 </template>
+
+<style scoped>
+dialog::backdrop {
+  filter: blur(5px);
+}
+</style>
