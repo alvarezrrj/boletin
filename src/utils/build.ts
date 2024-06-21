@@ -26,8 +26,12 @@ export async function build(contents: string) {
   const now = new Date()
   const baseName = `ARG_${now.getUTCFullYear()}_${now.getUTCMonth()}`
 
-  download(email, baseName + '.email.html')
-  download(web, baseName + '.web.html')
+  try {
+    download(email, baseName + '.email.html')
+    download(web, baseName + '.web.html')
+  } catch (error) {
+    console.error('Failed to download files:', error)
+  }
 }
 
 function validateLinks(html: string): string {
