@@ -10,8 +10,8 @@
   </tr>
 </template>
 
-<style scoped>
-td {
+<style>
+td.footer {
   max-width: 600px;
   padding: 20px;
 }

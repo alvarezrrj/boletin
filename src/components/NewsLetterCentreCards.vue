@@ -7,7 +7,7 @@
   </tr>
 
   <tr>
-    <td class="centre-card" width="50%" vertical-align="middle" colspan="2">
+    <td class="centre-card" width="50%" colspan="2">
       <img src="https://sukhada.dhamma.org/fotos/2018/09/img-ds-2017.jpg" alt="Dhamma Sukhada" />
 
       <a href="https://dhamma.org/es/schedules/schsukhada" target="_blank">
@@ -30,7 +30,7 @@
   </tr>
 
   <tr>
-    <td class="centre-card" width="50%" vertical-align="middle" colspan="2">
+    <td class="centre-card" width="50%" colspan="2">
       <img
         src="https://sukhada.dhamma.org/fotos/2023/06/casa-principal-DV.jpg"
         alt="Dhamma Viriya"
