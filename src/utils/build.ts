@@ -33,9 +33,7 @@ export async function build(contents: string) {
 function validateLinks(html: string): string {
   const dataArr = html.split('<body>')
   dataArr[0] += '<body>'
-  dataArr[1] = dataArr[1]
-    .replaceAll(/http:\/\//g, 'https://')
-    .replaceAll(/https:\/\/www./g, 'https://')
+  dataArr[1] = dataArr[1].replaceAll(/(http:\/\/|https:\/\/www\.)/g, 'https://')
 
   return dataArr.join('')
 }
