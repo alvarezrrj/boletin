@@ -7,16 +7,22 @@
   </tr>
 
   <tr>
-    <td class="centre-card" width="50%" vertical-align="middle" colspan="2">
+    <td class="centre-card" width="50%" colspan="2">
       <img src="https://sukhada.dhamma.org/fotos/2018/09/img-ds-2017.jpg" alt="Dhamma Sukhada" />
 
-      <a href="https://dhamma.org/es/schedules/schsukhada" target="_blank">
+      <a
+        href="https://dhamma.org/es/schedules/schsukhada"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Calendario de Cursos
       </a>
       |
       <a href="mailto:info@sukhada.dhamma.org">Info</a>
       <br />
-      <a href="https://facebook.com/sukhada.dhamma.org" target="_blank">Facebook</a>
+      <a href="https://facebook.com/sukhada.dhamma.org" target="_blank" rel="noopener noreferrer"
+        >Facebook</a
+      >
       <br />
       <p>(011) 15-5135-2153 (solo mensajes de Whatsapp)</p>
     </td>
@@ -30,13 +36,15 @@
   </tr>
 
   <tr>
-    <td class="centre-card" width="50%" vertical-align="middle" colspan="2">
+    <td class="centre-card" width="50%" colspan="2">
       <img
         src="https://sukhada.dhamma.org/fotos/2023/06/casa-principal-DV.jpg"
         alt="Dhamma Viriya"
       />
 
-      <a href="https://dhamma.org/es/schedules/schviriya" target="_blank"> Calendario de cursos </a>
+      <a href="https://dhamma.org/es/schedules/schviriya" target="_blank" rel="noopener noreferrer">
+        Calendario de cursos
+      </a>
       |
       <a href="mailto:info@viriya.dhamma.org">Info</a>
       <br />
