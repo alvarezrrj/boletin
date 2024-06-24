@@ -2,12 +2,13 @@
 import markdownit from 'markdown-it'
 import markdownitAttrs from 'markdown-it-attrs'
 import { ref } from 'vue'
-import NewsLetterHeader from './NewsLetterHeader.vue'
-import NewsLetterBody from './NewsLetterBody.vue'
-import NewsLetterFooter from './NewsLetterFooter.vue'
-import NewsLetterTOC from './NewsLetterTOC.vue'
-import NewsLetterCentreCards from './NewsLetterCentreCards.vue'
-import FirePad from './FirePadComponent.vue'
+import NewsLetterHeader from '@/components/NewsLetterHeader.vue'
+import NewsLetterBody from '@/components/NewsLetterBody.vue'
+import NewsLetterFooter from '@/components/NewsLetterFooter.vue'
+import NewsLetterTOC from '@/components/NewsLetterTOC.vue'
+import NewsLetterCentreCards from '@/components/NewsLetterCentreCards.vue'
+import FirePad from '@/components/FirePadComponent.vue'
+import ImageUploader from '@/components/ImageUploader.vue'
 
 const md = markdownit({
   linkify: true,
@@ -37,6 +38,7 @@ async function parse(raw: string) {
     <div class="input">
       <input type="text" v-model="headerImgUrl" placeholder="Imagen de encabezado" />
       <input type="text" v-model="headerDate" placeholder="Fecha" />
+      <ImageUploader />
       <FirePad :onChange="parse" :html="tableWrapperRef" />
     </div>
     <div class="newsletter_wrapper" ref="tableWrapperRef">
@@ -96,7 +98,7 @@ async function parse(raw: string) {
   width: 50%;
   overflow: scroll;
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto 1fr;
   gap: 1rem;
 }
 
@@ -104,13 +106,28 @@ textarea {
   max-width: 100%;
 }
 
-body {
+/* body {
   background-color: #f6f6f6;
-}
+} */
 
 .newsletter_wrapper {
   width: 50%;
   overflow: scroll;
+}
+
+.container {
+  width: unset;
+  padding: 0;
+}
+
+td,
+th {
+  padding: 0;
+  border: none;
+}
+
+thead td {
+  --pico-font-weight: 400;
 }
 </style>
 

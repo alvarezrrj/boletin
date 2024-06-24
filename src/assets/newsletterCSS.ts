@@ -1,4 +1,8 @@
-export const css = /*css*/ `#u_body {
+export const css = /*css*/ `html {
+  color-scheme: light dark;
+}
+
+#u_body {
   margin-inline: auto;
   line-height: 1.55em;
   --container-max-width: 600px;
@@ -11,8 +15,8 @@ export const css = /*css*/ `#u_body {
   margin: var(--container-margin);
   padding: 20px;
   clear: both !important;
-  background-color: #fff;
-  border: 1px solid #e9e9e9;
+  /* background-color: #fff; */
+  border: 1px solid #aaa;
   border-radius: 3px;
 }
 
@@ -92,7 +96,7 @@ h1,
 h2,
 h3 {
   font-family: Arial, 'Helvetica Neue', Helvetica, 'Lucida Grande', sans-serif;
-  color: #000;
+  /* color: #000; */
   margin: 40px 0 1rem 0;
   line-height: 1.2em;
 }
@@ -261,12 +265,25 @@ small {
 .centre-card {
   /* background: color-mix(in oklab, #c18f2c, transparent 85%); */
   background: #f6eedf;
+  padding: 0;
 }
 
 .centre-card img {
   width: 50%;
   float: left;
   margin-right: 1rem;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  .centre-card {
+    background-color: #352c23 !important;
+  }
+  .highlight,
+  .resaltado {
+    background-color: #dd1 !important;
+    border-color: #cc0 !important;
+    color: black !important;
+  }
 }
 
 @media only screen and (max-width: 640px) {

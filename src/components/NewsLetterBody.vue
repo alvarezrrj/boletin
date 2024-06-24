@@ -14,7 +14,7 @@ function generateSections(html: string): string {
   // Insert <hr>s before <h2>s
   const br = document.createElement('br')
   let i = 0
-  for (const h2 of h2s) {
+  for (const h2 of Array.from(h2s)) {
     const hr = document.createElement('hr')
     const backToTop = document.createElement('a')
     backToTop.innerText = 'Volver al tope de la página'
