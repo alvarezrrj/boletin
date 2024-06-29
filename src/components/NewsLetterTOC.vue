@@ -12,7 +12,7 @@ function generateTOC(html: string): string {
   const headers = div.querySelectorAll<HTMLHeadingElement>('h2')
 
   let i = 0
-  for (const header of headers) {
+  for (const header of Array.from(headers)) {
     if (!header.textContent) continue
 
     const href = 'a' + i
