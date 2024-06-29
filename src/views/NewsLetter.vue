@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import markdownit from 'markdown-it'
 import markdownitAttrs from 'markdown-it-attrs'
-import { ref } from 'vue'
+import { inject, ref, watch } from 'vue'
 import NewsLetterHeader from '@/components/NewsLetterHeader.vue'
 import NewsLetterBody from '@/components/NewsLetterBody.vue'
 import NewsLetterFooter from '@/components/NewsLetterFooter.vue'
 import NewsLetterTOC from '@/components/NewsLetterTOC.vue'
 import NewsLetterCentreCards from '@/components/NewsLetterCentreCards.vue'
 import FirePad from '@/components/FirePadComponent.vue'
-import ImageUploader from '@/components/ImageUploader.vue'
+import { emailRefKey, type emailRefProvider } from '@/keys/html'
+import FireInput from '@/components/FireInput.vue'
 
 const md = markdownit({
   linkify: true,
   breaks: true
 }).use(markdownitAttrs)
 const html = ref('')
-const tableWrapperRef = ref<HTMLTableElement>()
-const headerImgUrl = ref('https://sukhada.dhamma.org/fotos/2024/03/cabezal.jpg')
+const emailRef = inject(emailRefKey) as emailRefProvider
+const headerImgUrl = ref('-')
 const now = new Date()
 const month = new Intl.DateTimeFormat('es-AR', { month: 'long' }).format(now)
 const year = now.getFullYear()
@@ -36,12 +37,21 @@ async function parse(raw: string) {
 <template>
   <div class="wrapper">
     <div class="input">
-      <input type="text" v-model="headerImgUrl" placeholder="Imagen de encabezado" />
-      <input type="text" v-model="headerDate" placeholder="Fecha" />
-      <ImageUploader />
-      <FirePad :onChange="parse" :html="tableWrapperRef" />
+      <FireInput
+        :input-handler="(val) => (headerImgUrl = val)"
+        :content="headerImgUrl"
+        db-key="header-img"
+        placeholder="cabezal"
+      />
+      <FireInput
+        :input-handler="(val) => (headerDate = val)"
+        :content="headerDate"
+        db-key="date"
+        placeholder="fecha"
+      />
+      <FirePad :onChange="parse" />
     </div>
-    <div class="newsletter_wrapper" ref="tableWrapperRef">
+    <div class="newsletter_wrapper" ref="emailRef">
       <table id="u_body">
         <caption>
           <a name="top" id="top"></a>
@@ -52,7 +62,10 @@ async function parse(raw: string) {
             <td class="container">
               <table>
                 <thead>
-                  <NewsLetterHeader :img-url="headerImgUrl" :date="headerDate" />
+                  <NewsLetterHeader
+                    :img-url="headerImgUrl"
+                    :date="headerDate"
+                  />
                 </thead>
 
                 <tbody>
@@ -89,6 +102,9 @@ async function parse(raw: string) {
 </template>
 
 <style>
+/* body {
+  background-color: #f6f6f6;
+} */
 .wrapper {
   display: flex;
   max-height: 100%;
@@ -98,17 +114,14 @@ async function parse(raw: string) {
   width: 50%;
   overflow: scroll;
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
   gap: 1rem;
+  margin-top: 20px;
 }
 
 textarea {
   max-width: 100%;
 }
-
-/* body {
-  background-color: #f6f6f6;
-} */
 
 .newsletter_wrapper {
   width: 50%;

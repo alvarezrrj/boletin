@@ -1,25 +1,34 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, inject } from 'vue'
 import { fromMonaco, type IFirepad } from '@hackerrank/firepad'
 import { fire } from '../firebase/app'
-
 import * as monaco from 'monaco-editor'
-import { build } from '../utils/build'
 import { navigate } from '@/utils/navigate'
+import { firepadResetKey, type FirepadResetProvider } from '@/keys/firepad'
 
 const props = defineProps<{
   onChange: (raw: string) => void
-  html?: HTMLTableElement
 }>()
 const monacoWrapperRef = ref()
 const userColor = ref('gray')
-const userColors = ['#817', '#ed0', '#0bc', '#c66', '#4d8', '#36b', '#e94', '#2cb', '#639']
+const userColors = [
+  '#817',
+  '#ed0',
+  '#0bc',
+  '#c66',
+  '#4d8',
+  '#36b',
+  '#e94',
+  '#2cb',
+  '#639'
+]
+const { setFirepadReset } = inject(firepadResetKey) as FirepadResetProvider
 let monacoEditor: monaco.editor.IStandaloneCodeEditor
 let firepad: IFirepad
 
 async function setUserColor() {
   const loggedInUsers = await fire.loggedInUsers
-  userColor.value = userColors[loggedInUsers - 1]
+  userColor.value = userColors[(loggedInUsers - 1) % userColors.length]
 }
 
 /**
@@ -30,12 +39,16 @@ function initializePad(defaultText?: string) {
     language: 'markdown',
     minimap: { enabled: false },
     wordWrap: 'on',
-    smoothScrolling: true
+    smoothScrolling: true,
+    automaticLayout: true,
+    theme: '#f00'
     // TODO
     // Dark theme
   })
 
-  monacoEditor.onDidChangeModelContent(() => props.onChange(monacoEditor.getValue()))
+  monacoEditor.onDidChangeModelContent(() =>
+    props.onChange(monacoEditor.getValue())
+  )
   firepad = fromMonaco(fire.dbRef, monacoEditor, {
     userName: fire.auth!.user?.email?.split('@')[0],
     userColor: userColor.value,
@@ -49,22 +62,19 @@ function initializePad(defaultText?: string) {
  */
 async function reset() {
   const loggedInUsers = await fire.loggedInUsers
-  if (loggedInUsers === 1) {
-    const data = monacoEditor.getValue()
+  if (loggedInUsers !== 1) return
 
-    monacoEditor.dispose()
-    firepad.dispose()
+  const data = monacoEditor.getValue()
 
-    await fire.clearHistory()
+  await fire.clearHistory()
 
-    initializePad(data)
-  }
+  monacoEditor.dispose()
+  firepad.dispose()
+
+  initializePad(data)
 }
 
-async function save() {
-  build(props.html!.innerHTML)
-  reset()
-}
+setFirepadReset(reset)
 
 onMounted(async () => {
   if (!fire.isAuthed) return navigate('/login')
@@ -73,6 +83,7 @@ onMounted(async () => {
     await setUserColor()
     initializePad()
   } catch (e) {
+    alert('No se pudo cargar el editor de texto. Probá recargando la página.')
     console.error('Error initializing pad', e)
   }
 })
@@ -83,7 +94,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <button :onClick="save">Generar HTML</button>
-
   <div id="monaco" ref="monacoWrapperRef"></div>
 </template>
