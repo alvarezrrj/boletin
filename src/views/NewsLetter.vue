@@ -42,12 +42,14 @@ async function parse(raw: string) {
         :content="headerImgUrl"
         db-key="header-img"
         placeholder="cabezal"
+        aria-label="enlace a imagen de encabezado"
       />
       <FireInput
         :input-handler="(val) => (headerDate = val)"
         :content="headerDate"
         db-key="date"
         placeholder="fecha"
+        aria-label="fecha"
       />
       <FirePad :onChange="parse" />
     </div>

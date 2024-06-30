@@ -18,21 +18,33 @@ function debounce(cb: CallableFunction) {
 }
 
 onMounted(() => {
-  // Attach listener
-  fire.dbRef.child(props.dbKey).on(
-    'value',
-    debounce((snapshot: any) => {
-      if (snapshot && 'val' in snapshot) props.inputHandler(snapshot.val?.())
-    })
-  )
+  try {
+    // Attach listener
+    fire.dbRef.child(props.dbKey).on(
+      'value',
+      debounce((snapshot: any) => {
+        if (snapshot && 'val' in snapshot) props.inputHandler(snapshot.val?.())
+      })
+    )
+  } catch (error) {
+    console.error('Error attaching Firebase listener:', error)
+  }
 })
 onUpdated(() => {
-  // Update DB on change
-  props.content !== '-' && fire.dbRef.child(props.dbKey).set(props.content)
+  try {
+    // Update DB on change
+    props.content !== '-' && fire.dbRef.child(props.dbKey).set(props.content)
+  } catch (error) {
+    console.error('Error updating Firebase database:', error)
+  }
 })
 onUnmounted(() => {
-  // Detach listener
-  fire.dbRef.child(props.dbKey).off('value')
+  try {
+    // Detach listener
+    fire.dbRef.child(props.dbKey).off('value')
+  } catch (error) {
+    console.error('Error detaching Firebase listener:', error)
+  }
 })
 </script>
 <template>

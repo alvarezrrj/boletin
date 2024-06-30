@@ -37,7 +37,8 @@ export async function build(contents: string) {
 function validateLinks(html: string): string {
   const dataArr = html.split('<body>')
   dataArr[0] += '<body>'
-  // @ts-ignore
+  // @ts-ignore is used here because I can't get typescript to stop complaining
+  // about replaceAll
   dataArr[1] = dataArr[1].replaceAll(/(http:\/\/|https:\/\/www\.)/g, 'https://')
 
   return dataArr.join('')
@@ -59,7 +60,8 @@ function autocloseTags(html: string): string {
   const tags = ['br', 'img', 'meta', 'hr']
   for (const tag of tags) {
     const pattern = new RegExp(`(<${tag}.*?)(/?>)`, 'g')
-    // @ts-ignore
+    // @ts-ignore is used here because I can't get typescript to stop complaining
+    // about replaceAll
     html = html.replaceAll(pattern, '$1/>')
   }
   return html
