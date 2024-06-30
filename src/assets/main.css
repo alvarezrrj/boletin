@@ -13,11 +13,13 @@ body {
 #app {
   /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
   font-weight: normal;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }

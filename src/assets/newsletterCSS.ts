@@ -1,14 +1,12 @@
-export const css = /*css*/ `html {
-  color-scheme: light dark;
-}
-
-#u_body {
+export const css = /*css*/ `#u_body {
   margin-inline: auto;
   line-height: 1.55em;
   --container-max-width: 600px;
   --container-margin: 20px max(20px, calc((100% - 600px) / 2));
 }
-
+/* html {
+  color-scheme: light dark;
+} */
 .container {
   display: block !important;
   max-width: var(--container-max-width) !important;
@@ -274,7 +272,7 @@ small {
   margin-right: 1rem;
 }
 
-@media only screen and (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .centre-card {
     background-color: #352c23 !important;
   }
@@ -284,7 +282,7 @@ small {
     border-color: #cc0 !important;
     color: black !important;
   }
-}
+} */
 
 @media only screen and (max-width: 640px) {
   body {

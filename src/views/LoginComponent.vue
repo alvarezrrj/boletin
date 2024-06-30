@@ -18,8 +18,9 @@ async function login(e: Event): Promise<void> {
     formElement.reset()
 
     navigate('/')
-  } catch (e) {
-    alert('Invalid credentials')
+  } catch (e: any) {
+    if ('code' in e && e.code.includes('auth')) alert('Credenciales inválidas')
+    else alert('Error al iniciar sesión')
     console.error(e)
   }
 }
@@ -28,8 +29,8 @@ async function login(e: Event): Promise<void> {
 <template>
   <article class="">
     <form ref="formRef" :onSubmit="login">
-      <input type="text" name="email" />
-      <input type="password" name="password" />
+      <input type="text" name="email" aria-label="Email" />
+      <input type="password" name="password" aria-label="password" />
       <input type="submit" value="login" />
     </form>
   </article>
