@@ -8,7 +8,10 @@
 
   <tr>
     <td class="centre-card" width="50%" colspan="2">
-      <img src="https://sukhada.dhamma.org/fotos/2018/09/img-ds-2017.jpg" alt="Dhamma Sukhada" />
+      <img
+        src="https://os.ar.dhamma.org/wp-content/uploads/img-ds-2017-1-300x200.jpg"
+        alt="Dhamma Sukhada"
+      />
 
       <a
         href="https://dhamma.org/es/schedules/schsukhada"
@@ -20,7 +23,10 @@
       |
       <a href="mailto:info@sukhada.dhamma.org">Info</a>
       <br />
-      <a href="https://facebook.com/sukhada.dhamma.org" target="_blank" rel="noopener noreferrer"
+      <a
+        href="https://facebook.com/sukhada.dhamma.org"
+        target="_blank"
+        rel="noopener noreferrer"
         >Facebook</a
       >
       <br />
@@ -38,11 +44,15 @@
   <tr>
     <td class="centre-card" width="50%" colspan="2">
       <img
-        src="https://sukhada.dhamma.org/fotos/2023/06/casa-principal-DV.jpg"
+        src="https://os.ar.dhamma.org/wp-content/uploads/casa-principal-DV-1-300x169.jpg"
         alt="Dhamma Viriya"
       />
 
-      <a href="https://dhamma.org/es/schedules/schviriya" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://dhamma.org/es/schedules/schviriya"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Calendario de cursos
       </a>
       |
