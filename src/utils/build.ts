@@ -72,7 +72,8 @@ async function minify(html: string): Promise<string> {
     removeLineBreaks: true,
     removeHTMLComments: true,
     breakToTheLeftOf: [],
-    mindTheInlineTags: []
+    mindTheInlineTags: [],
+    lineLengthLimit: 20000
   }).result
 }
 
