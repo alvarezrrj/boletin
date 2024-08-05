@@ -224,6 +224,7 @@ p:has(.btn-primary, .boton) {
   color: #348eda;
 }
 
+mark,
 .highlight,
 .resaltado {
   background-color: #ee1;
@@ -262,7 +263,8 @@ small {
 
 .centre-card {
   /* background: color-mix(in oklab, #c18f2c, transparent 85%); */
-  background: #f6eedf;
+  /* background: #f6eedf; */
+  background: #ffffcc;
   padding: 0;
 }
 
