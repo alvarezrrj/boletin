@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import markdownit from 'markdown-it'
 import markdownitAttrs from 'markdown-it-attrs'
-import { inject, ref, watch } from 'vue'
+import { inject, ref } from 'vue'
 import NewsLetterHeader from '@/components/NewsLetterHeader.vue'
 import NewsLetterBody from '@/components/NewsLetterBody.vue'
 import NewsLetterFooter from '@/components/NewsLetterFooter.vue'
