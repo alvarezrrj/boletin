@@ -148,10 +148,6 @@ ol li {
   list-style-position: inside;
 }
 
-p:has(.btn-primary, .boton) {
-  text-align: center;
-}
-
 .btn-primary,
 .boton {
   text-decoration: none;
@@ -166,6 +162,9 @@ p:has(.btn-primary, .boton) {
   display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
+  margin: 0 auto;
+  display: block;
+  width: min-content;
 }
 
 .last {
