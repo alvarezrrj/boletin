@@ -5,9 +5,13 @@ import { computed, onBeforeUnmount, provide, ref, type Component } from 'vue'
 import { protectedView } from '@/utils/protected'
 import NotFound from '@/views/NotFound.vue'
 import Layout from '@/views/LayoutComponent.vue'
+import DeviceNotSupported from '@/views/DeviceNotSupported.vue'
 import TopNav from '@/components/TopNav.vue'
 import { emailRefKey } from '@/keys/html'
 import { firepadResetKey } from '@/keys/firepad'
+import { detectMobileDevice } from '@/utils/detectMobileDevice'
+
+const isMobile = detectMobileDevice()
 
 const routes = computed<{ [key: string]: Component }>(() => ({
   '/': protectedView(NewsLetter),
@@ -38,7 +42,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Layout>
+  <Layout v-if="isMobile">
+    <template #main>
+      <DeviceNotSupported />
+    </template>
+  </Layout>
+
+  <Layout v-else>
     <template #header>
       <TopNav />
     </template>
