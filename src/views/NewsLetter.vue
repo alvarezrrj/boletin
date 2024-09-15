@@ -37,22 +37,28 @@ async function parse(raw: string) {
 <template>
   <div class="wrapper">
     <div class="input">
-      <FireInput
-        :input-handler="(val) => (headerImgUrl = val)"
-        :content="headerImgUrl"
-        db-key="header-img"
-        placeholder="cabezal"
-        aria-label="enlace a imagen de encabezado"
-      />
-      <FireInput
-        :input-handler="(val) => (headerDate = val)"
-        :content="headerDate"
-        db-key="date"
-        placeholder="fecha"
-        aria-label="fecha"
-      />
+      <!-- Cabezal -->
+      <details>
+        <summary>Cabezal</summary>
+        <FireInput
+          :input-handler="(val) => (headerImgUrl = val)"
+          :content="headerImgUrl"
+          db-key="header-img"
+          placeholder="cabezal"
+          aria-label="enlace a imagen de encabezado"
+        />
+        <FireInput
+          :input-handler="(val) => (headerDate = val)"
+          :content="headerDate"
+          db-key="date"
+          placeholder="fecha"
+          aria-label="fecha"
+        />
+      </details>
+      <!-- End cabezal -->
       <FirePad :onChange="parse" />
     </div>
+    <!-- Parsed newsletter -->
     <div class="newsletter_wrapper" ref="emailRef">
       <table id="u_body">
         <caption>
@@ -116,8 +122,7 @@ async function parse(raw: string) {
   width: 50%;
   overflow: scroll;
   display: grid;
-  grid-template-rows: auto auto 1fr;
-  gap: 1rem;
+  grid-template-rows: auto 1fr;
   margin-top: 20px;
 }
 
