@@ -24,7 +24,7 @@ export async function build(contents: string) {
   const web = await minify(webPretty)
 
   const now = new Date()
-  const baseName = `ARG_${now.getUTCFullYear()}_${now.getUTCMonth()}`
+  const baseName = `ARG_${now.getFullYear()}_${now.getMonth() + 1}`
 
   try {
     download(email, baseName + '.email.html')
