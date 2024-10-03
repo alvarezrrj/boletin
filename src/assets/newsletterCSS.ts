@@ -159,12 +159,11 @@ ol li {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
   margin: 0 auto;
   display: block;
-  width: min-content;
+  width: fit-content;
 }
 
 .last {
