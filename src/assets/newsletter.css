@@ -174,7 +174,8 @@ ol li {
   margin-top: 0;
 }
 
-.text-center {
+.text-center,
+.aligncenter {
   text-align: center;
 }
 
