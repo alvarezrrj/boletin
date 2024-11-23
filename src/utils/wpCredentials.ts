@@ -1,13 +1,3 @@
-export function handleWpCredentials(): string | undefined {
-  const credentials = new URLSearchParams(window.location.search)
-  const username = credentials.get('user_login')
-  const password = credentials.get('password')?.split('#')[0]
-
-  if (!username || !password) return
-
-  return btoa(`${username}:${password}`)
-}
-
 export const initWpCredentials = () => {
   let basicAuth = ''
 

@@ -20,6 +20,7 @@ const wpBasicAuth = ref<string>()
 const loading = ref(false)
 const error = ref('')
 const imagesWrapperRef = ref<HTMLDivElement>()
+const IMAGES_PER_PAGE = 15
 
 const wpCredentials = initWpCredentials()
 wpBasicAuth.value = wpCredentials()
@@ -28,7 +29,7 @@ function appendToImages(image: Image) {
   images.value.splice(0, 0, image)
 }
 
-async function fetchImages(page = 1, per_page = 15) {
+async function fetchImages(page = 1, per_page = IMAGES_PER_PAGE) {
   if (loading.value) return
   loading.value = true
   error.value = ''
@@ -38,12 +39,16 @@ async function fetchImages(page = 1, per_page = 15) {
       FETCH_URL + `?page=${page}&per_page=${per_page}`,
       { headers: { Authorization: `Basic ${wpBasicAuth.value}` } }
     )
+
+    if (!response.ok) throw new Error(await response.text())
+
     const result = await response.json()
     result.forEach((i: WpResponse) => {
       const image = extractSizes(i)
       viewTransition(() => image && images.value.push(image))
     })
   } catch (e) {
+    error.value = 'Algo salió mal mientras intentabamos descargar las imágenes.'
     console.error(e)
   } finally {
     loading.value = false
@@ -55,8 +60,7 @@ function scrollListener() {
   if (!gallery) return
   const { scrollTop, scrollHeight, clientHeight } = gallery
   if (scrollTop + clientHeight >= scrollHeight - 50) {
-    const page = Math.floor(images.value.length / 25) + 1
-    console.log('Fetching')
+    const page = Math.floor(images.value.length / IMAGES_PER_PAGE) + 1
     fetchImages(page)
   }
 }
@@ -65,7 +69,7 @@ if (wpBasicAuth.value) fetchImages()
 </script>
 
 <template>
-  <div class="images_wrapper" ref="imagesWrapperRef" :onscroll="scrollListener">
+  <div class="images_wrapper" ref="imagesWrapperRef" @scroll="scrollListener">
     <a href="#/">
       <p>👈 Volver al boletin</p>
     </a>
@@ -85,7 +89,9 @@ if (wpBasicAuth.value) fetchImages()
         </template>
       </div>
 
-      <p :aria-busy="loading" v-html="error"></p>
+      <p :aria-busy="loading">
+        <del>{{ error }}</del>
+      </p>
     </template>
 
     <template v-else>
