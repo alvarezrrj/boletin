@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import markdownit from 'markdown-it'
 import markdownitAttrs from 'markdown-it-attrs'
-import { inject, ref, watch } from 'vue'
+import { inject, ref } from 'vue'
 import NewsLetterHeader from '@/components/NewsLetterHeader.vue'
 import NewsLetterBody from '@/components/NewsLetterBody.vue'
 import NewsLetterFooter from '@/components/NewsLetterFooter.vue'
@@ -37,22 +37,28 @@ async function parse(raw: string) {
 <template>
   <div class="wrapper">
     <div class="input">
-      <FireInput
-        :input-handler="(val) => (headerImgUrl = val)"
-        :content="headerImgUrl"
-        db-key="header-img"
-        placeholder="cabezal"
-        aria-label="enlace a imagen de encabezado"
-      />
-      <FireInput
-        :input-handler="(val) => (headerDate = val)"
-        :content="headerDate"
-        db-key="date"
-        placeholder="fecha"
-        aria-label="fecha"
-      />
+      <!-- Cabezal -->
+      <details>
+        <summary>Cabezal</summary>
+        <FireInput
+          :input-handler="(val) => (headerImgUrl = val)"
+          :content="headerImgUrl"
+          db-key="header-img"
+          placeholder="cabezal"
+          aria-label="enlace a imagen de encabezado"
+        />
+        <FireInput
+          :input-handler="(val) => (headerDate = val)"
+          :content="headerDate"
+          db-key="date"
+          placeholder="fecha"
+          aria-label="fecha"
+        />
+      </details>
+      <!-- End cabezal -->
       <FirePad :onChange="parse" />
     </div>
+    <!-- Parsed newsletter -->
     <div class="newsletter_wrapper" ref="emailRef">
       <table id="u_body">
         <caption>
@@ -116,9 +122,14 @@ async function parse(raw: string) {
   width: 50%;
   overflow: scroll;
   display: grid;
-  grid-template-rows: auto auto 1fr;
-  gap: 1rem;
+  grid-template-rows: auto 1fr;
   margin-top: 20px;
+}
+
+details {
+  border: 1px solid var(--pico-accordion-open-summary-color);
+  padding: 0.5rem;
+  border-radius: var(--pico-border-radius);
 }
 
 textarea {

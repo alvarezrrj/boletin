@@ -1,12 +1,12 @@
-export const css = /*css*/ `#u_body {
+export const css = /*css*/ `/* html {
+  color-scheme: light dark;
+} */
+#u_body {
   margin-inline: auto;
   line-height: 1.55em;
   --container-max-width: 600px;
   --container-margin: 20px max(20px, calc((100% - 600px) / 2));
 }
-/* html {
-  color-scheme: light dark;
-} */
 .container {
   display: block !important;
   max-width: var(--container-max-width) !important;
@@ -148,10 +148,6 @@ ol li {
   list-style-position: inside;
 }
 
-p:has(.btn-primary, .boton) {
-  text-align: center;
-}
-
 .btn-primary,
 .boton {
   text-decoration: none;
@@ -163,9 +159,11 @@ p:has(.btn-primary, .boton) {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
 }
 
 .last {
@@ -224,6 +222,7 @@ p:has(.btn-primary, .boton) {
   color: #348eda;
 }
 
+mark,
 .highlight,
 .resaltado {
   background-color: #ee1;
@@ -262,7 +261,8 @@ small {
 
 .centre-card {
   /* background: color-mix(in oklab, #c18f2c, transparent 85%); */
-  background: #f6eedf;
+  /* background: #f6eedf; */
+  background: #ffffcc;
   padding: 0;
 }
 

@@ -13,6 +13,7 @@
 <style scoped>
 main {
   margin: 0 auto;
+  /* max-height: 100%; */
   overflow: hidden;
   padding-inline: var(--pico-spacing);
 }

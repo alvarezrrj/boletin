@@ -24,7 +24,7 @@ export async function build(contents: string) {
   const web = await minify(webPretty)
 
   const now = new Date()
-  const baseName = `ARG_${now.getUTCFullYear()}_${now.getUTCMonth()}`
+  const baseName = `ARG_${now.getFullYear()}_${now.getMonth() + 1}`
 
   try {
     download(email, baseName + '.email.html')
@@ -72,7 +72,8 @@ async function minify(html: string): Promise<string> {
     removeLineBreaks: true,
     removeHTMLComments: true,
     breakToTheLeftOf: [],
-    mindTheInlineTags: []
+    mindTheInlineTags: [],
+    lineLengthLimit: 20000
   }).result
 }
 
@@ -80,7 +81,7 @@ function extractMainTable(html: string): string {
   const div = document.createElement('div')
   div.innerHTML = html
   const table = div.querySelector('#u_body')
-  // div.querySelector('.footer')!.remove()
+  div.querySelector('.footer')?.remove()
 
   return table!.outerHTML
 }

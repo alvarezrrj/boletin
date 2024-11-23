@@ -5,16 +5,24 @@ import { computed, onBeforeUnmount, provide, ref, type Component } from 'vue'
 import { protectedView } from '@/utils/protected'
 import NotFound from '@/views/NotFound.vue'
 import Layout from '@/views/LayoutComponent.vue'
+import DeviceNotSupported from '@/views/DeviceNotSupported.vue'
 import TopNav from '@/components/TopNav.vue'
 import { emailRefKey } from '@/keys/html'
 import { firepadResetKey } from '@/keys/firepad'
+import { detectMobileDevice } from '@/utils/detectMobileDevice'
+import Images from './views/ImagesComponent.vue'
+
+const isMobile = detectMobileDevice()
 
 const routes = computed<{ [key: string]: Component }>(() => ({
   '/': protectedView(NewsLetter),
-  '/login': LoginComponent
+  '/login': LoginComponent,
+  '/fotos': protectedView(Images)
 }))
 
-const currentPath = ref(window.location.hash)
+const currentPath = ref(
+  document.referrer.includes('os.ar.dhamma.org') ? '/fotos' : '/'
+)
 const currentView = computed(
   () => routes.value[currentPath.value.slice(1) || '/'] || NotFound
 )
@@ -38,7 +46,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Layout>
+  <Layout v-if="isMobile">
+    <template #main>
+      <DeviceNotSupported />
+    </template>
+  </Layout>
+
+  <Layout v-else>
     <template #header>
       <TopNav />
     </template>

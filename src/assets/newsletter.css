@@ -148,10 +148,6 @@ ol li {
   list-style-position: inside;
 }
 
-p:has(.btn-primary, .boton) {
-  text-align: center;
-}
-
 .btn-primary,
 .boton {
   text-decoration: none;
@@ -163,9 +159,11 @@ p:has(.btn-primary, .boton) {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
 }
 
 .last {
@@ -182,6 +180,7 @@ p:has(.btn-primary, .boton) {
 
 .alignright {
   text-align: right;
+  float: none !important;
 }
 
 .text-left {
@@ -224,6 +223,7 @@ p:has(.btn-primary, .boton) {
   color: #348eda;
 }
 
+mark,
 .highlight,
 .resaltado {
   background-color: #ee1;
@@ -262,7 +262,8 @@ small {
 
 .centre-card {
   /* background: color-mix(in oklab, #c18f2c, transparent 85%); */
-  background: #f6eedf;
+  /* background: #f6eedf; */
+  background: #ffffcc;
   padding: 0;
 }
 
