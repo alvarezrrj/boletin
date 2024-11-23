@@ -58,7 +58,7 @@ Titulo de sección
               </td>
             </tr>
             <tr>
-              <td><a href="javascript:;">Enlace</a></td>
+              <td><a href="#">Enlace</a></td>
               <td>
                 <pre>[Enlace](https://example.com)</pre>
               </td>

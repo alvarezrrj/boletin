@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Image } from '@/utils/wpUploader'
-import { ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 
 const { image } = defineProps<{
   image: Image
@@ -9,6 +9,7 @@ const { image } = defineProps<{
 const dialogRef = ref<HTMLDialogElement>()
 const loading = ref(true)
 const copied = ref(false)
+let copyTimeout: NodeJS.Timeout
 
 function imgClickHandler() {
   const dialog = dialogRef.value
@@ -21,13 +22,15 @@ async function copyUrlToClipboard() {
   try {
     await navigator.clipboard.writeText(image.email)
     copied.value = true
-    setTimeout(() => {
+    copyTimeout = setTimeout(() => {
       copied.value = false
     }, 2000)
   } catch (e) {
     console.error('Failed to copy')
   }
 }
+
+onBeforeUnmount(() => copyTimeout && clearTimeout(copyTimeout))
 </script>
 
 <template>
@@ -39,8 +42,9 @@ async function copyUrlToClipboard() {
       loading="lazy"
       :src="image.thumbnail"
       width="150"
+      :aria-busy="loading"
     />
-    <p v-html="image.email.slice(44)" @click="copyUrlToClipboard"></p>
+    <p @click="copyUrlToClipboard">{{ image.email.slice(44) }}</p>
     <ins v-if="copied">Enlace copiado</ins>
   </article>
 

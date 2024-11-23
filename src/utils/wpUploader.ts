@@ -1,18 +1,20 @@
-export function uploadRequest(
+const MIN_EMAIL_WIDTH = 600
+const WIDTH_REDUCTION_STEP = 100
+
+export async function uploadRequest(
   baseUrl: string,
   altText: string,
-  fileName: string,
   basicAuth: string,
-  body: ArrayBuffer
+  file: File
 ) {
   return fetch(baseUrl + '/wp-json/wp/v2/media' + `?alt_text=${altText}`, {
     headers: {
-      'Content-Disposition': `attachment; filename=${fileName}`,
-      'Content-Type': 'image/png',
+      'Content-Disposition': `attachment; filename=${file.name}`,
+      'Content-Type': file.type,
       Authorization: `Basic ${basicAuth}`
     },
     method: 'POST',
-    body
+    body: await file.arrayBuffer()
   })
 }
 
@@ -27,7 +29,10 @@ export function extractSizes(wpResponse: WpResponse): Image | null {
 }
 
 // Find smallest image of width >= 600px
-function findEmailImage(images: MediaSize[], minWidth = 600): MediaSize {
+function findEmailImage(
+  images: MediaSize[],
+  minWidth = MIN_EMAIL_WIDTH
+): MediaSize {
   const found = images
     .sort((a, b) => a.width - b.width)
     .find((s) => s.width >= minWidth)
@@ -35,7 +40,7 @@ function findEmailImage(images: MediaSize[], minWidth = 600): MediaSize {
   // Baseline: return smallest image
   if (!found && minWidth === 0) return images[0]
 
-  return found || findEmailImage(images, minWidth - 100)
+  return found || findEmailImage(images, minWidth - WIDTH_REDUCTION_STEP)
 }
 
 export type Image = {

@@ -10,26 +10,48 @@ const props = defineProps<{
 
 const loading = ref(false)
 
+function isValidImageFile(file: File) {
+  if (!file.type.startsWith('image/')) {
+    alert('Por favor seleccione un archivo de imagen.')
+    return false
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Por favor seleccione una imagen menor a 5MB.')
+    return false
+  }
+  return true
+}
+
+function uploadErrorHandler() {
+  alert(
+    'Error de conexión. Puede que no estés conectado a internet o que haya' +
+      ' un problema con WordPress.'
+  )
+}
+
 async function upload(e: Event) {
   loading.value = true
   e.preventDefault()
 
   const fileInputElement: HTMLInputElement = (e.target as HTMLFormElement)?.file
   const altInputElement: HTMLInputElement = (e.target as HTMLFormElement)?.alt
-  if (!fileInputElement || !altInputElement) return
+  if (!fileInputElement?.files?.length || !altInputElement?.value)
+    return alert('Por favor seleccione un archivo y escriba una descripción.')
 
   const file = (fileInputElement.files as FileList)[0]
-  const fileName = file.name
-  const body = await file.arrayBuffer()
+
+  if (!isValidImageFile(file)) return
 
   try {
     const response = await uploadRequest(
       props.baseUrl,
       altInputElement.value,
-      fileName,
       props.wpBasicAuth,
-      body
+      file
     )
+    if (!response.ok)
+      return alert('Error al subir la imagen. Por favor, intente nuevamente.')
+
     const wpResponse = await response.json()
     const image = extractSizes(wpResponse)
 
@@ -38,10 +60,7 @@ async function upload(e: Event) {
 
     props.onUpload(image)
   } catch (error) {
-    alert(
-      'Error de conexión. Puede que no estés conectado a internet o que haya' +
-        ' un problema con WordPress.'
-    )
+    uploadErrorHandler()
   } finally {
     loading.value = false
   }
@@ -52,6 +71,7 @@ async function upload(e: Event) {
   <form v-on:submit="upload" enctype="multipart/form-data">
     <label>
       <span>Arrastrá una imagen y soltala en el recuadro</span>
+      <small>Tamaño máximo: 5 MB</small>
       <input type="file" accept="image/*" name="file" />
     </label>
     <label>
