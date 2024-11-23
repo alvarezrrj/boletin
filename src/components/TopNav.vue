@@ -5,7 +5,7 @@ import { inject, useTemplateRef } from 'vue'
 import { build } from '@/utils/build'
 import { firepadResetKey, type FirepadResetProvider } from '@/keys/firepad'
 import { navigate } from '@/utils/navigate'
-import HelpComponent from './HelpComponent.vue'
+import HelpComponent from './help/HelpComponent.vue'
 
 const helpComponent = useTemplateRef<typeof HelpComponent>('help-ref')
 const emailRef = inject(emailRefKey) as emailRefProvider

@@ -174,12 +174,13 @@ ol li {
   margin-top: 0;
 }
 
-.text-center {
+.text-center, .aligncenter {
   text-align: center;
 }
 
 .alignright {
   text-align: right;
+  float: none !important;
 }
 
 .text-left {

@@ -126,12 +126,6 @@ async function parse(raw: string) {
   margin-top: 20px;
 }
 
-details {
-  border: 1px solid var(--pico-accordion-open-summary-color);
-  padding: 0.5rem;
-  border-radius: var(--pico-border-radius);
-}
-
 textarea {
   max-width: 100%;
 }
@@ -158,3 +152,11 @@ thead td {
 </style>
 
 <style src="../assets/newsletter.css"></style>
+
+<style scoped>
+details {
+  border: 1px solid var(--pico-accordion-open-summary-color);
+  padding: 0.5rem;
+  border-radius: var(--pico-border-radius);
+}
+</style>
