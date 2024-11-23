@@ -10,15 +10,19 @@ import TopNav from '@/components/TopNav.vue'
 import { emailRefKey } from '@/keys/html'
 import { firepadResetKey } from '@/keys/firepad'
 import { detectMobileDevice } from '@/utils/detectMobileDevice'
+import Images from './views/ImagesComponent.vue'
 
 const isMobile = detectMobileDevice()
 
 const routes = computed<{ [key: string]: Component }>(() => ({
   '/': protectedView(NewsLetter),
-  '/login': LoginComponent
+  '/login': LoginComponent,
+  '/fotos': protectedView(Images)
 }))
 
-const currentPath = ref(window.location.hash)
+const currentPath = ref(
+  document.referrer.includes('os.ar.dhamma.org') ? '/fotos' : '/'
+)
 const currentView = computed(
   () => routes.value[currentPath.value.slice(1) || '/'] || NotFound
 )

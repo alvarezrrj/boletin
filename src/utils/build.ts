@@ -81,7 +81,7 @@ function extractMainTable(html: string): string {
   const div = document.createElement('div')
   div.innerHTML = html
   const table = div.querySelector('#u_body')
-  // div.querySelector('.footer')!.remove()
+  div.querySelector('.footer')?.remove()
 
   return table!.outerHTML
 }
