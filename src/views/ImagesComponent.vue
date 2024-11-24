@@ -2,6 +2,7 @@
 import ImageComponent from '@/components/ImageComponent.vue'
 import ImageUploader from '@/components/ImageUploader.vue'
 import WordpressLogin from '@/components/WordpressLogin.vue'
+import { APP_BASE_URL } from '@/config/sd'
 import { viewTransition } from '@/utils/viewTransition'
 import { initWpCredentials } from '@/utils/wpCredentials'
 import { extractSizes, type Image, type WpResponse } from '@/utils/wpUploader'
@@ -14,7 +15,8 @@ const LOGIN_URL =
   WP_BASE_URL +
   '/wp-admin/authorize-application.php' +
   '?app_name=Editor de boletines' +
-  '&success_url=https://alvarezrrj.github.io/boletin.constructor'
+  '&success_url=https://alvarezrrj.github.io' +
+  APP_BASE_URL
 const images = ref<Image[]>([])
 const wpBasicAuth = ref<string>()
 const loading = ref(false)
@@ -88,8 +90,8 @@ if (wpBasicAuth.value) fetchImages()
           <ImageComponent :image="image" />
         </template>
         <div class="loader">
-          <span :aria-busy="loading"></span>
-          <del>{{ error }}</del>
+          <span v-if="loading" :aria-busy="loading"></span>
+          <del v-if="error">{{ error }}</del>
         </div>
       </div>
     </template>
