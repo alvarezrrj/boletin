@@ -12,7 +12,7 @@ export const initWpCredentials = () => {
     basicAuth = btoa(`${username}:${password}`)
     const origin = window.location.origin
     const path = window.location.hash
-    history.pushState(null, '', origin + path)
+    history.pushState(null, '', origin + '/boletin.constructor' + path)
     return basicAuth
   }
 }
