@@ -20,8 +20,10 @@ async function login(e: Event): Promise<void> {
 
     formElement.reset()
 
-    const back = !referrer || referrer?.includes('login') ? '/' : referrer
-    navigate(back)
+    const isLoginRoute = referrer.includes('login')
+    const defaultRoute = '/'
+    const targetRoute = !referrer || isLoginRoute ? defaultRoute : referrer
+    navigate(targetRoute)
   } catch (e: any) {
     if ('code' in e && e.code.includes('auth')) alert('Credenciales inválidas')
     else alert('Error al iniciar sesión')
