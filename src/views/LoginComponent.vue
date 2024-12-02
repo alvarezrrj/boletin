@@ -13,11 +13,17 @@ async function login(e: Event): Promise<void> {
   if (!formElement) return
 
   try {
+    const rawReferrer = window.location.hash.slice(1)
+    const referrer = rawReferrer.match(/^[a-zA-Z0-9/-]*$/) ? rawReferrer : '/'
+
     await fire.login(formElement.email.value, formElement.password.value)
 
     formElement.reset()
 
-    navigate('/')
+    const isLoginRoute = referrer.includes('login')
+    const defaultRoute = '/'
+    const targetRoute = !referrer || isLoginRoute ? defaultRoute : referrer
+    navigate(targetRoute)
   } catch (e: any) {
     if ('code' in e && e.code.includes('auth')) alert('Credenciales inválidas')
     else alert('Error al iniciar sesión')
