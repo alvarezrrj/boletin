@@ -13,7 +13,8 @@ async function login(e: Event): Promise<void> {
   if (!formElement) return
 
   try {
-    const referrer = window.location.hash.slice(1)
+    const rawReferrer = window.location.hash.slice(1)
+    const referrer = rawReferrer.match(/^[a-zA-Z0-9/-]*$/) ? rawReferrer : '/'
 
     await fire.login(formElement.email.value, formElement.password.value)
 
