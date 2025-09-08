@@ -11,9 +11,9 @@ defineProps<{
       <table width="100%" cellpadding="0" cellspacing="0">
         <tbody>
           <tr>
-            <td class="content-block" width="50%">VIPASSANA ARGENTINA</td>
+            <td class="pb-20" width="50%">VIPASSANA ARGENTINA</td>
             <td class="alignright">
-              <span>
+              <span class="p-0">
                 <a href="http://www.sukhada.dhamma.org/">DS</a> |
                 <a href="https://viriya.dhamma.org/">DV</a>
               </span>
@@ -28,7 +28,7 @@ defineProps<{
             </td>
           </tr>
           <tr>
-            <td class="content-block" width="50%">BOLETIN INFORMATIVO</td>
+            <td class="pb-20" width="50%">BOLETIN INFORMATIVO</td>
             <td class="alignright" v-text="date"></td>
           </tr>
         </tbody>

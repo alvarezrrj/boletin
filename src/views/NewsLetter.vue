@@ -15,6 +15,8 @@ const md = markdownit({
   linkify: true,
   breaks: true
 }).use(markdownitAttrs)
+md.linkify.set({ fuzzyLink: false })
+
 const html = ref('')
 const emailRef = inject(emailRefKey) as emailRefProvider
 const headerImgUrl = ref('-')
