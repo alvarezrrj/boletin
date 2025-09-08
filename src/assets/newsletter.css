@@ -227,12 +227,8 @@ small {
 }
 
 @media (prefers-color-scheme: dark) {
-  .centre-card {
-    /* background-color: #352c23 !important; */
-    /* background-color: rgba(255, 255, 204, 0.7) !important; */
-    p {
-      color: rgb(15, 15, 15);
-    }
+  .centre-card p {
+    color: rgb(15, 15, 15);
   }
   .highlight,
   .resaltado {
