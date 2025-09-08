@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td class="content-block text-left" colspan="2">
+    <td class="pb-20 text-left" colspan="2">
       <h2 class="text-left ignore"><i>Dhamma Sukhadá</i></h2>
       Centro <i>Vipassana</i> Buenos Aires (Brandsen)
     </td>
@@ -30,12 +30,12 @@
         >Facebook</a
       >
       <br />
-      <p>(011) 15-5135-2153 (solo mensajes de Whatsapp)</p>
+      <p>+54 9 11 5135-2153 (solamente mensajes de WhatsApp)</p>
     </td>
   </tr>
 
   <tr>
-    <td class="content-block text-left" colspan="2">
+    <td class="pb-20 text-left" colspan="2">
       <h2 class="text-left ignore"><i>Dhamma Viriya</i></h2>
       Centro <i>Vipassana</i> Córdoba (Capilla del Monte)
     </td>

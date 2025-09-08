@@ -1,4 +1,5 @@
-import { css } from '@/assets/newsletterCSS'
+// import { css } from '@/assets/newsletterCSS'
+import newsletterStyles from '@/assets/newsletter.css?raw'
 
 export function template(contents: string) {
   return /*html*/ `<?xml version="1.0"?>
@@ -8,7 +9,7 @@ export function template(contents: string) {
             <meta name="viewport" content="width=device-width" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <title>Vipassana Anuncios</title>
-            <style type="text/css">${css}</style>
+            <style type="text/css">${newsletterStyles}</style>
         </head>
         <body>
             ${contents}
