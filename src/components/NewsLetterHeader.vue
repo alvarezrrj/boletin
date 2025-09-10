@@ -12,7 +12,7 @@ defineProps<{
         <tbody>
           <tr>
             <td class="pb-20" width="50%">VIPASSANA ARGENTINA</td>
-            <td class="alignright">
+            <td class="alignright pb-20">
               <span class="p-0">
                 <a href="http://www.sukhada.dhamma.org/">DS</a> |
                 <a href="https://viriya.dhamma.org/">DV</a>
@@ -29,7 +29,7 @@ defineProps<{
           </tr>
           <tr>
             <td class="pb-20" width="50%">BOLETIN INFORMATIVO</td>
-            <td class="alignright" v-text="date"></td>
+            <td class="alignright pb-20" v-text="date"></td>
           </tr>
         </tbody>
       </table>
