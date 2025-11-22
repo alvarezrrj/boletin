@@ -284,11 +284,21 @@ small {
 pre {
   display: block;
   margin-bottom: 1rem;
-  overflow-x: auto;
+  overflow-x: scroll;
   border-radius: 0.25rem;
   background: rgb(243, 245, 247);
   color: #646b79;
   line-height: initial;
+  /* En caso de que algun dispositivo tenga problemas con la segunda declaración, debería aplicar la primera */
+  max-width: 550px;
+  max-width: min(calc(100vw - 30px), 550px);
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    background: rgb(26, 31, 40);
+    color: #8891a4;
+  }
 }
 
 pre > code {
