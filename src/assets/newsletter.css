@@ -258,22 +258,6 @@ small {
     margin: 20px 0 5px 0 !important;
   }
 
-  /* h1 {
-    font-size: 22px !important;
-  }
-
-  h2 {
-    font-size: 19px !important;
-  }
-
-  h3 {
-    font-size: 16px !important;
-  }
-
-  h4 {
-    font-size: 16px !important;
-  } */
-
   .container {
     padding: 0 !important;
     margin: 0 !important;
@@ -295,6 +279,23 @@ small {
     float: none !important;
     margin: 0 !important;
   }
+}
+
+pre {
+  display: block;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  border-radius: 0.25rem;
+  background: rgb(243, 245, 247);
+  color: #646b79;
+  line-height: initial;
+}
+
+pre > code {
+  display: block;
+  padding: 1rem;
+  background: 0 0;
+  line-height: 1.5;
 }
 
 .d-none {
