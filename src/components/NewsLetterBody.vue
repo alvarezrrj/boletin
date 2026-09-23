@@ -16,6 +16,7 @@ function generateSections(html: string): string {
   let i = 0
   for (const h2 of Array.from(h2s)) {
     if (h2.parentElement !== div) continue
+    const a = document.createElement('a')
     const hr = document.createElement('hr')
     hr.classList.add('section-break')
     const backToTop = document.createElement('a')
@@ -28,6 +29,10 @@ function generateSections(html: string): string {
 
     const id = 'a' + i
     h2.setAttribute('id', id)
+    // The anchor tag is a workaround for gmail breaking the id attributes
+    a.setAttribute('name', id)
+    h2.appendChild(a)
+
     i++
   }
 
