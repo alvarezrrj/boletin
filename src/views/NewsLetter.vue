@@ -13,7 +13,8 @@ import FireInput from '@/components/FireInput.vue'
 
 const md = markdownit({
   linkify: true,
-  breaks: true
+  breaks: true,
+  html: true,
 }).use(markdownitAttrs)
 md.linkify.set({ fuzzyLink: false })
 
@@ -83,7 +84,7 @@ async function parse(raw: string) {
 
                   <tr>
                     <td>
-                      <hr />
+                      <hr class="section-break"/>
                     </td>
                   </tr>
 

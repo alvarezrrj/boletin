@@ -15,7 +15,9 @@ function generateSections(html: string): string {
   const br = document.createElement('br')
   let i = 0
   for (const h2 of Array.from(h2s)) {
+    if (h2.parentElement !== div) continue
     const hr = document.createElement('hr')
+    hr.classList.add('section-break')
     const backToTop = document.createElement('a')
     backToTop.innerText = 'Volver al tope de la página'
     backToTop.href = '#top'

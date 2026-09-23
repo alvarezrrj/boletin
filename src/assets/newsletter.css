@@ -37,7 +37,11 @@ strong {
 
 img {
   border-style: none;
-  max-width: 100%;
+  max-width: 558px;
+}
+
+p:has(img) {
+  text-align: center;
 }
 
 button,
@@ -48,11 +52,6 @@ input {
 table td {
   vertical-align: top;
 }
-
-/* .header {
-  width: 100%;
-  margin-bottom: 20px;
-} */
 
 .footer {
   max-width: var(--container-max-width);
@@ -85,7 +84,9 @@ h1 {
 h2 {
   font-weight: 600;
   font-size: 24px;
-  color: #666600;
+  /* color: #666600; */
+  /* color: #C18F2C; */
+  color: #24549E;
   margin-top: 65px;
 }
 
@@ -107,9 +108,14 @@ h5 {
 hr {
   height: 1px;
   border: none;
-  color: rgb(238, 199, 39);
+  /* border-top: 1px solid #202632; */
+  background-color: #202632;
+  margin-block: 1rem;
+}
+
+hr.section-break {
+  /* color: rgb(238, 199, 39); */
   background-color: rgb(238, 199, 39);
-  margin-top: 1rem;
 }
 
 ol {
@@ -306,6 +312,29 @@ pre > code {
   padding: 1rem;
   background: 0 0;
   line-height: 1.5;
+}
+
+details summary::marker {
+  content: none;
+}
+
+details summary::after {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin-inline-start: .5rem;
+  float: right;
+  transform: rotate(-90deg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(136, 145, 164)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-position: right center;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+  content: "";
+  transition: transform .2s ease-in-out;
+}
+
+details[open] > summary::after {
+  transform: rotate(0);
 }
 
 .d-none {
