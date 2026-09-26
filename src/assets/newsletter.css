@@ -41,8 +41,8 @@ styles
 */
 img, img[src] {
   border-style: none;
-  max-width: 558px !important;
-  max-inline-size: 558px !important;
+  max-width: min(100%, 558px) !important;
+  max-inline-size: min(100%, 558px) !important;
 }
 
 p:has(img) {

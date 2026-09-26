@@ -13,7 +13,7 @@ function generateTOC(html: string): string {
 
   let i = 0
   for (const header of Array.from(headers)) {
-    if (!header.textContent) continue
+    if (!header.textContent || header.parentElement !== div) continue
 
     const href = 'a' + i
     const text = header.innerHTML

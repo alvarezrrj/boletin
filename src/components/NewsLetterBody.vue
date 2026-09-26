@@ -15,7 +15,7 @@ function generateSections(html: string): string {
   const br = document.createElement('br')
   let i = 0
   for (const h2 of Array.from(h2s)) {
-    if (h2.parentElement !== div) continue
+    if (h2.parentElement !== div || !h2.textContent) continue
     const a = document.createElement('a')
     const hr = document.createElement('hr')
     hr.classList.add('section-break')
