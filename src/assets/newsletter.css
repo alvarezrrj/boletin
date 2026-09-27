@@ -35,9 +35,18 @@ strong {
   font-weight: bolder;
 }
 
-img {
+/* 
+The attribute selector is just a specificity boost to override thunderbird 
+styles
+*/
+img, img[src] {
   border-style: none;
-  max-width: 100%;
+  max-width: min(100%, 558px) !important;
+  max-inline-size: min(100%, 558px) !important;
+}
+
+p:has(img) {
+  text-align: center;
 }
 
 button,
@@ -48,11 +57,6 @@ input {
 table td {
   vertical-align: top;
 }
-
-/* .header {
-  width: 100%;
-  margin-bottom: 20px;
-} */
 
 .footer {
   max-width: var(--container-max-width);
@@ -85,7 +89,9 @@ h1 {
 h2 {
   font-weight: 600;
   font-size: 24px;
-  color: #666600;
+  /* color: #666600; */
+  /* color: #C18F2C; */
+  color: #24549E;
   margin-top: 65px;
 }
 
@@ -107,9 +113,14 @@ h5 {
 hr {
   height: 1px;
   border: none;
-  color: rgb(238, 199, 39);
+  /* border-top: 1px solid #202632; */
+  background-color: #202632;
+  margin-block: 1rem;
+}
+
+hr.section-break {
+  /* color: rgb(238, 199, 39); */
   background-color: rgb(238, 199, 39);
-  margin-top: 1rem;
 }
 
 ol {
@@ -258,22 +269,6 @@ small {
     margin: 20px 0 5px 0 !important;
   }
 
-  /* h1 {
-    font-size: 22px !important;
-  }
-
-  h2 {
-    font-size: 19px !important;
-  }
-
-  h3 {
-    font-size: 16px !important;
-  }
-
-  h4 {
-    font-size: 16px !important;
-  } */
-
   .container {
     padding: 0 !important;
     margin: 0 !important;
@@ -295,6 +290,33 @@ small {
     float: none !important;
     margin: 0 !important;
   }
+}
+
+pre {
+  display: block;
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+  border-radius: 0.25rem;
+  background: rgb(243, 245, 247);
+  color: #646b79;
+  line-height: initial;
+  /* En caso de que algun dispositivo tenga problemas con la segunda declaración, debería aplicar la primera */
+  max-width: 550px;
+  max-width: min(calc(100vw - 30px), 550px);
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    background: rgb(26, 31, 40);
+    color: #8891a4;
+  }
+}
+
+pre > code {
+  display: block;
+  padding: 1rem;
+  background: 0 0;
+  line-height: 1.5;
 }
 
 .d-none {

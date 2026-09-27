@@ -13,12 +13,11 @@ function generateTOC(html: string): string {
 
   let i = 0
   for (const header of Array.from(headers)) {
-    if (!header.textContent) continue
+    if (!header.textContent || header.parentElement !== div) continue
 
     const href = 'a' + i
     const text = header.innerHTML
     menu.appendChild(createTOCElement(href, text))
-    header.setAttribute('id', href)
     i++
   }
 
@@ -42,7 +41,8 @@ onUpdated(() => (toc.value = generateTOC(props.html)))
 
 <template>
   <tr>
-    <td><h2>Tabla de contenidos</h2></td>
+    <!-- The anchor tag is a workaround for gmail breaking the ID attributes -->
+    <td><h2 id="top">Tabla de contenidos</h2><a name="top"></a></td>
   </tr>
   <tr>
     <td v-html="toc"></td>

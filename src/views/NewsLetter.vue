@@ -13,7 +13,8 @@ import FireInput from '@/components/FireInput.vue'
 
 const md = markdownit({
   linkify: true,
-  breaks: true
+  breaks: true,
+  html: true,
 }).use(markdownitAttrs)
 md.linkify.set({ fuzzyLink: false })
 
@@ -63,10 +64,6 @@ async function parse(raw: string) {
     <!-- Parsed newsletter -->
     <div class="newsletter_wrapper" ref="emailRef">
       <table id="u_body">
-        <caption>
-          <a name="top" id="top"></a>
-        </caption>
-
         <tbody>
           <tr>
             <td class="container">
@@ -83,7 +80,7 @@ async function parse(raw: string) {
 
                   <tr>
                     <td>
-                      <hr />
+                      <hr class="section-break"/>
                     </td>
                   </tr>
 
